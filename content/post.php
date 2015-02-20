@@ -16,7 +16,7 @@
 
 		<div <?php hybrid_attr( 'entry-summary' ); ?>>
 			<?php get_the_image( array( 'attachment' => false, 'image_class' => 'theme-thumbnail' ) ); ?>
-			<?php if ('excerpt' == get_option('blog_post_content')) : ?>
+			<?php if ('excerpt' == get_option('blog_post_content') && !get_post_meta(get_the_ID(), 'force_full_content', true)) : ?>
 			<?php the_excerpt(); ?>
 			<?php tamatebako_read_more(); ?>
 			<?php else : ?>
