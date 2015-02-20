@@ -16,8 +16,12 @@
 
 		<div <?php hybrid_attr( 'entry-summary' ); ?>>
 			<?php get_the_image( array( 'attachment' => false, 'image_class' => 'theme-thumbnail' ) ); ?>
+			<?php if ('excerpt' == get_option('blog_post_content')) : ?>
 			<?php the_excerpt(); ?>
 			<?php tamatebako_read_more(); ?>
+			<?php else : ?>
+			<?php the_content(); ?>
+			<?php endif; ?>
 		</div><!-- .entry-summary -->
 
 		<div class="entry-footer">

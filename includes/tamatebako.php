@@ -536,6 +536,50 @@ function tamatebako_theme_layouts_customize_register( $wp_customize ){
 				'choices'  => $layout_choices
 			)
 		);
+		
+		
+		// Add blog section
+		$wp_customize->add_section(
+			// ID
+			'blog_section',
+			// Arguments array
+			array(
+				'title' => __( 'Blog', 'generate' ),
+				'capability' => 'edit_theme_options',
+				'description' => '',
+				'priority' => 200
+			)
+		);
+		// Add blog setting
+		$wp_customize->add_setting(
+			// ID
+			'blog_post_content',
+			// Arguments array
+			array(
+				'default' => 'excerpt',
+				'type' => 'option',
+				'transport' => 'refresh'
+			)
+		);
+		
+		// Add blog control
+		$wp_customize->add_control(
+			// ID
+			'blog_content_control',
+			// Arguments array
+			array(
+				'type' => 'select',
+				'label' => __( 'Blog Post Content', 'generate' ),
+				'section' => 'blog_section',
+				'choices' => array(
+					'full' => __( 'Show full post', 'generate' ),
+					'excerpt' => __( 'Show excerpt', 'generate' )
+				),
+				// This last one must match setting ID from above
+				'settings' => 'blog_post_content',
+				'priority' => 10
+			)
+		);
 	}
 }
 
